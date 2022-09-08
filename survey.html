@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+  
+   %%[
+  var @sub_key,@reason
+  set @sub_key = _subscriberkey
+  Set @reason=RequestParameter("reason")
+  
+    SET @rr_1=CreateObject("RetrieveRequest")
+SetObjectProperty(@rr_1,"ObjectType","Subscriber")
+AddObjectArrayItem(@rr_1,"Properties","Status")
+  
+SET @sfp=CreateObject("SimpleFilterPart")
+SetObjectProperty(@sfp,"Property","SubscriberKey")
+SetObjectProperty(@sfp,"SimpleOperator","equals")
+AddObjectArrayItem(@sfp,"Value",@sub_key)
+SetObjectProperty(@rr_1,"Filter",@sfp)
+SET @sub=InvokeRetrieve(@rr_1,@rrStatus, @rrRequestID)
+ IF RowCount(@sub) > 0 THEN
+  SET @lisStat = Row(@sub,1)
+  SET @status = Field(@lisStat,'Status')
+  IF @status =='Unsubscribed' THEN 
+  SET @unsub_tooltip= 'You have already Unsubscribed'
+  ENDIF
+  ENDIF
+  
+  ]%%
+          
+     
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content=" Preference Center">
+      <title>EmblemHealth</title>
+      <!-- Bootstrap core CSS and Font Awesome CSS -->
+      <link href="%%=CloudPagesURL(1748)=%%" rel="stylesheet">
+   <script src="https://cloud.connections.emblemhealth.com/jquery.min.js/jquery.min.js"></script>
+      <!-- Custom styles for this template -->
+      <style>
+         footer {
+         background-color: #50327c;
+         color: #fff;
+         font-size: 12px;
+         padding-top: 20px;
+         }
+         .bg-light { background-color: #fff !important;}
+         footer li a {
+         color: #fff;
+         text-decoration: underline
+         }
+         body {
+         padding-top: 120px;
+         padding-bottom: 40px;
+         }
+         .fa-lg {
+         color: #50327c
+         }
+         .btn-send {
+         background-color: #50327c;
+         border: 0;
+         }
+         .btn-send:hover {
+         background-color: #50327c;
+         border: 0;
+         }
+         .navbar {
+         box-shadow: 5px 5px 5px #ccc;
+         }
+      </style>
+
+   <script>
+$(document).ready(function(){
+  $("input[name='reason']").change(function(){
+    if($("#reason1").prop("checked") == true){
+      $("#reasonForm").attr("action", '%%=RedirectTo(CloudPagesURL(3979,'Sub_key',@sub_key,'reason',@reason,'action','Unsusbscribed','type','admin'))=%%')
+    }
+ else if($("#reason2").prop("checked") == true){
+      $("#reasonForm").attr("action", '%%=RedirectTo(CloudPagesURL(3982,'Sub_key',@sub_key,'reason',@reason,'action','Unsusbscribed','type','admin'))=%%')
+    }
+ else if($("#reason3").prop("checked") == true){
+      $("#reasonForm").attr("action", '%%=RedirectTo(CloudPagesURL(3980,'Sub_key',@sub_key,'reason',@reason,'action','Unsusbscribed','type','admin'))=%%')
+    }
+ else if($("#reason4").prop("checked") == true){
+      $("#reasonForm").attr("action", '%%=RedirectTo(CloudPagesURL(3981,'Sub_key',@sub_key,'reason',@reason,'action','Unsusbscribed','type','admin'))=%%')
+    }
+ else if($("#reason5").prop("checked") == true){
+      $("#reasonForm").attr("action", '%%=RedirectTo(CloudPagesURL(4032,'Sub_key',@sub_key,'reason',@reason,'action','Unsusbscribed','type','admin'))=%%')
+    }
+    else if($("#reason6").prop("checked") == true){
+      $("#reasonForm").attr("action", '%%=RedirectTo(CloudPagesURL(3983,'Sub_key',@sub_key,'reason',@reason,'action','Unsusbscribed','type','admin'))=%%')
+    }
+    else{
+      $("#reasonForm").attr("action", '%%=RedirectTo(CloudPagesURL(3981,'Sub_key',@sub_key,'reason',@reason,'action','Unsusbscribed','type','admin'))=%%')
+    }
+  });
+}); 
+</script>
+   </head>
+   <body>
+      <!-- Navigation -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+         <div class="container">
+            <a class="navbar-brand" href="#">
+            <img src="https://image.connections.emblemhealth.com/lib/fe3715707564057c711c79/m/1/fb65159a-cf00-42fe-a0fc-4097c0f6d253.png
+               " width="75%"  alt="Emblem Health">
+            </a>
+            <ul class="navbar-nav ml-auto ml-md-0" style="flex-direction: row; ">
+               <li class="nav-item dropdown no-arrow mx-1">
+                  <a href="https://www.facebook.com/EmblemHealth/" target="_blank">
+                  <img src="https://image.connections.emblemhealth.com/lib/fe3715707564057c711c79/m/1/0ee0719e-1385-47ca-918d-306065463a05.png"/> 
+                  </a>
+               </li>
+               <li class="nav-item dropdown no-arrow mx-1"><a href="https://twitter.com/emblemhealth" target="_blank"><img src="https://image.connections.emblemhealth.com/lib/fe3715707564057c711c79/m/1/2c7e112a-18e3-4760-96d7-868dc16b187d.png
+                  " /></a></li>
+               <li class="nav-item dropdown no-arrow mx-1"><a href="https://www.linkedin.com/company/emblemhealth" target="_blank"><img src="https://image.connections.emblemhealth.com/lib/fe3715707564057c711c79/m/1/9fed8c26-6592-4776-9ead-77d6f1fdbbec.png
+                  " /></a></li>
+               <li class="nav-item dropdown no-arrow mx-1"><a href="https://www.instagram.com/emblemhealth" target="_blank"><img src="https://image.connections.emblemhealth.com/lib/fe3715707564057c711c79/m/1/3f4a7332-7bda-450b-863a-a3a6585609e3.png
+                  " /></a></li>
+               <li class="nav-item dropdown no-arrow mx-1"><a href="https://www.youtube.com/user/emblemhealth" target="_blank"><img src="https://image.connections.emblemhealth.com/lib/fe3715707564057c711c79/m/1/fd75f9a0-251b-42a7-ab38-a99480baf508.png
+                  " /></a></li>
+            </ul>
+         </div>
+      </nav>
+      <div class="container container-table">
+         <div class="row vertical-center-row">
+            <div class="text-secondary">
+               <div class="container h-100">
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <input type="hidden" id="sub_key" name="sub_key"  style="font-size:1.3rem ;border-radius: 10px;color:#00778b;" value="%%=v(@sub_key)=%%">
+                        <div class="help-block with-errors"></div>
+                     </div>
+                  </div>
+              
+                 
+                  <div class="row align-items-center h-100">
+                
+                     <h1 style="font-family: Arial, helvetica, sans-serif; font-size: 28px; color: rgb(82, 36, 127); line-height: 1; font-weight: bold; font-style: normal; text-align: ;">
+                        We are sorry to see you go.
+                     </h1>
+                     <br>
+                     <p>
+                     </p>
+                    
+      
+<form name="reasonForm" id='reasonForm' action='%%=RedirectTo(CloudPagesURL(3981,'Sub_key',@sub_key,'reason',@reason,'action','Unsusbscribed','type','admin'))=%%' method='post'>
+   
+                   %%[
+                      IF @status != "Unsubscribed" THEN 
+                      ]%%  
+   <p>
+                        %%[ VAR @fname, SET @fname = AttributeValue("firstname") ]%% Dear %%[IF not empty(@fname) AND @fname != "xxxxxxxxxxxxxx" AND @fname != "XXXXX" THEN]%%%%=v(ProperCase(@fname))=%%%%[ELSE]%%EmblemHealth member%%[ENDIF]%%,<br><br> To help us ensure we provide members like you with a meaningful experience, please take a moment to tell us why you unsubscribed.
+                     </p>
+                   
+                        <p>Please make a selection:</p>
+                        <input type="radio" id="reason1" name="reason" value="notpregnant">
+                        <label for="notpregnant">I am not pregnant.</label><br>
+              <input type="radio" id="reason6" name="reason" value="termination">
+                        <label for="termination"> I had a planned termination.</label><br>
+                        <input type="radio" id="reason2" name="reason" value="pregnancyloss">
+                        <label for="pregnancyloss">I suffered a pregnancy loss.</label><br>
+                        <input type="radio" id="reason3" name="reason" value="toomany">
+                        <label for="toomany">I am receiving too many messages.</label>
+                        <br><input type="radio" id="reason4" name="reason" value="notrelevant">
+                        <label for="notrelevant">The messages are not relevant to me.</label>
+                        <br> <input type="radio" id="reason5" name="reason" value="other">
+                        <label for="Other">Other</label>
+                        <br><br>
+      <input  type='submit' name='Submit' value='Submit' />
+               %%[ ELSE ]%%
+   <h2><center><font  size="5px"><br><br>%%=v(@unsub_tooltip)=%%</font></center></h2>
+
+%%[ENDIF]%%
+                     </form><br><br>
+                     
+                  </div>
+                 <p>
+                        If you&rsquo;d like to rejoin at another time, complete <b><a alias="this" conversion="false" data-linkto="https://" href="https://www.emblemhealth.com/healthypregnancy" style="color:blue;text-decoration:underline;" title="this">this</a></b> short form. We&rsquo;d love to have you back!<br><br>
+                     </p>
+               </div>
+            </div>
+         </div>
+      </div>
+      <br><br>
+
+
+      <footer class="fixed-bottom">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-6">
+                  <span class="copyright">&copy; %%=Format(Now(), "yyyy")=%%   EmblemHealth. All rights reserved.</span>
+               </div>
+               <div class="col-md-6">
+                  <ul class="list-inline quicklinks">
+                     <li class="list-inline-item">
+                        <a href="https://www.emblemhealth.com/Legal-Information/Privacy-Security-Policies">Privacy Policy</a>
+                     </li>
+                     <li class="list-inline-item">
+                        <a href="https://www.emblemhealth.com/Legal-Information/Notice-of-Nondiscrimination-Policy">Nondiscrimination Policy</a>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </footer>
+      
+   
+<script>(function(a,m,i,g,o,s){o=a.createElement(g);s=a.getElementsByTagName(i)[0];o.src=m.origin+m.pathname+"/_t?eventType=CLOUDPAGESVISIT";o.width=0;o.height=0;o.style.display="none";s.appendChild(o);})(document,window.location,"body","img");</script>
+
+ <script src="https:&#x2F;&#x2F;100011496.collect.igodigital.com&#x2F;collect.js"></script>
+ <script>
+  if (_etmc && typeof _etmc.push === 'function') {
+   _etmc.push(['setOrgId', '100011496']);
+   _etmc.push(['trackPageView']);
+  }
+ </script>
+
+</body>
+</html>
